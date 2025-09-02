@@ -3,33 +3,10 @@ sequenceDiagram
   participant server
 
   browser->>server: POST
-https://fullstack-exampleapp.herokuapp.com/new_note
+https://fullstack-exampleapp.herokuapp.com/new_note_spa
   activate server
-  server-->>browser: URL redirect
+  server-->>browser: 201 created status
   deactivate server
 
-  Note right of browser: Form transmits data to server 
-  
-  browser->>server: GET
-https://studies.cs.helsinki.fi/exampleapp/notes
-  activate server
-  server-->>browser: HTML document
-  deactivate server
-
-  browser->>server: GET
-https://studies.cs.helsinki.fi/exampleapp/main.css
-  activate server
-  server-->>browser: the css file
-  deactivate server
-
-  browser->>server: GET
-https://studies.cs.helsinki.fi/exampleapp/main.js
-  activate server
-  server-->>browser: the JavaScript file
-  deactivate server
-
-  browser->>server: GET
-https://studies.cs.helsinki.fi/exampleapp/data.json
-  activate server
-  server-->>browser: [{ "content": "hello", "date":"2025-9-2"}, ... ]
-  deactivate server
+  Note right of browser: Form transmits data to server via JSON
+  Note right of server: Server renders new note object and pushes it to notes array. No redirect
